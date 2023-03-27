@@ -13,7 +13,7 @@ module.exports = {
       .catch( err => res.json({ message: "HERE'S THE ERROR", error: err }))
   },
 
-  showAllProducts: function ( req, res ) {
+  allProducts: function ( req, res ) {
     Ecommerce.find( )
       .then( allProducts => {
         res.json({ results: allProducts })
@@ -21,7 +21,7 @@ module.exports = {
       .catch( err => res.json({ message: "HERE'S THE ERROR", error: err }))
   },
 
-  showOneProduct: function ( req, res ) {
+  oneProduct: function ( req, res ) {
     Ecommerce.findOne({ _id: req.params.id })
       .then( oneProduct => {
         res.json({ results: oneProduct })
