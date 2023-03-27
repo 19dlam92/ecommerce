@@ -16,7 +16,7 @@ app.use(( req,res,next ) => {
 })
 require('dotenv').config();
 require("./server/config/mongoose.config")
-require("./server/routes/productManager.route")(app)
+require("./server/routes/ecommerce.route")(app)
 
 app.listen( port, () => console.log(`Listening on port: ${ port }`) );
 
