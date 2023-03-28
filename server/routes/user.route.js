@@ -15,4 +15,8 @@ module.exports = (app) => {
 
     app.post("/api/User/register", UserController.registerUser)
 
+    app.post("/api/User/login", UserController.loginUser)
+
+    app.post("/api/User/logout", UserController.logoutUser)
+
 }

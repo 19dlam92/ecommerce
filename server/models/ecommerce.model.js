@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 
 const EcommerceSchema = new mongoose.Schema({
@@ -25,5 +24,3 @@ const EcommerceSchema = new mongoose.Schema({
 
 const Ecommerce = mongoose.model('Ecommerce', EcommerceSchema);
 module.exports = Ecommerce;
-
-// login reg will have its own model

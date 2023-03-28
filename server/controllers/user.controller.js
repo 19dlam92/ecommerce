@@ -53,9 +53,42 @@ module.exports = {
   registerUser: function ( req, res ) {
     User.create( req.body )
       .then( register => {
-        res.json({ results: 'You have registered a User!', register: register })
+        const userToken = jwt.sign({
+          id: user._id
+        }, process.env.SECRET_KEY)
+        res
+          .cookie('userToken', userToken, process.env.SECRET_KEY, {
+            httpOnly: true
+          })
+          .json({ results: 'You have registerd a User!', register: register })})
+      .catch( err => res.json({ message: "HERE'S THE ERROR for deleteUser", error: err }))
+    
+  },
+
+  loginUser: async ( req, res ) => {
+    const user = await User.findOne({ email: req.body.email })
+    if (user === null) {
+      return res.sendStatus(400)
+    }
+
+    const correctPassword = await bcrypt.compare( req.body.password, user.password )
+    if (!correctPassword) {
+      return res.sendStatus(400)
+    }
+
+    const userToken = jwt.sign({
+      id: user._id
+    }, process.env.SECRET_KEY)
+    res
+      .cookie('userToken', userToken, process.env.SECRET_KEY, {
+        httpOnly: true
       })
-      .catch( err => res.json({ message: "HERE'S THE ERROR for registerUser", error: err }))
+      .json({ results: 'Logged in user has been verified!'})
+  },
+
+  logoutUser: function ( req, res ) {
+    res.clearCookie('userToken')
+    res.sendStatus(200)
   }
 
 }
