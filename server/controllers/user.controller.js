@@ -52,16 +52,18 @@ module.exports = {
 
   registerUser: function ( req, res ) {
     User.create( req.body )
-      .then( register => {
+      .then( user => {
         const userToken = jwt.sign({
           id: user._id
+          // email: user.email
+          // if cookie needs to store more payload data
         }, process.env.SECRET_KEY)
         res
           .cookie('userToken', userToken, process.env.SECRET_KEY, {
             httpOnly: true
           })
-          .json({ results: 'You have registerd a User!', register: register })})
-      .catch( err => res.json({ message: "HERE'S THE ERROR for deleteUser", error: err }))
+          .json({ results: 'You have registered a User!', user: user })})
+      .catch( err => res.json({ message: "HERE'S THE ERROR for registerUser", error: err }))
     
   },
 

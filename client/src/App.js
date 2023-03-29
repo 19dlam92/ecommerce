@@ -7,20 +7,28 @@ import {
 } from 'react-router-dom'
 import Login from './components/login'
 import Register from './components/register'
+import Dashboard from './components/dashboard'
 
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <BrowserRouter>
-        <div className='row'>
-          <div className='col'>
-            <Register />
-          </div>
-          <div className='col'>
-            <Login />
-          </div>
-        </div>
+        <Switch>
+          <Route exact path='/'>
+            <div className='row'>
+              <div className='col'>
+                <Register />
+              </div>
+              <div className='col'>
+                <Login />
+              </div>
+            </div>
+          </Route>
+          <Route exact path='/dashboard'>
+            <Dashboard />
+          </Route>
+        </Switch>
       </BrowserRouter>
     </div>
   );
