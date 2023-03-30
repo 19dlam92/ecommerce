@@ -20,8 +20,8 @@ const Register = () => {
     }
     axios.post('http://localhost:8000/api/User/register', registerInfo, { withCredentials: true })
       .then( res => {
-        console.log('Response for Registration', res)
         if ( res.data.errors ) {
+          console.log('Response for register.jsx post method', res)
           setFormErrors( res.data.errors )
         } else {
           history.push('/login')
@@ -32,7 +32,7 @@ const Register = () => {
       })
   }
 
-  // password confirmation not linked!
+  // password confirmation and form errors not linked!
 
   return(
     <>
@@ -50,9 +50,9 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <p className="text-danger">{ formErrors.password?.message }</p>
-        <label htmlFor="confirmPassword">Confirm Password: </label>
+        <label htmlFor="confirm">Confirm Password: </label>
         <input 
-          type="password" name="confirmPassword" className="form-control"
+          type="password" name="confirm" className="form-control"
           onChange={(e) => setConfirm(e.target.value)}
         />
         <p className="text-danger">{ formErrors.confirm?.message }</p>

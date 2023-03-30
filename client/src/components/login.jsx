@@ -18,7 +18,7 @@ const Login = () => {
     }
     axios.post('http://localhost:8000/api/User/login', loggedInUser, { withCredentials: true })
       .then( res => {
-        console.log('Response for Logged in user', res)
+        console.log('Response for login.jsx post method', res)
         if ( res.data.errors ) {
           setFormErrors( res.data.errors )
         } else {
