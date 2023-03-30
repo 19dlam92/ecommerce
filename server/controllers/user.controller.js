@@ -50,39 +50,49 @@ module.exports = {
       .catch( err => res.json({ message: "HERE'S THE ERROR for deleteUser", error: err }))
   },
 
+  // modify registerUser to async await
+
   registerUser: function ( req, res ) {
-    User.create( req.body )
-      .then( user => {
-        const userToken = jwt.sign({
-          id: user._id
-          // email: user.email
-          // if cookie needs to store more payload data
-        }, process.env.SECRET_KEY)
-        res
-          .cookie('userToken', userToken, process.env.SECRET_KEY, {
-            httpOnly: true
-          })
-          .json({ results: 'You have registered a User!', user: user })})
-      .catch( err => res.json({ message: "HERE'S THE ERROR for registerUser", error: err }))
-    
+    User.find({ email: req.body.email })
+      .then ( userWithEmail => {
+        if ( userWithEmail === 0 ) {
+          User.create( req.body )
+            .then( user => {
+              const userToken = jwt.sign({
+                id: user._id
+                // email: user.email
+                // if cookie needs to store more payload data
+              }, process.env.SECRET_KEY)
+              res
+                .cookie('userToken', userToken, process.env.SECRET_KEY, {
+                  httpOnly: true
+                })
+                .json({ results: 'You have registered a User!', user: user })})
+            .catch( err => res.json({ message: "HERE'S THE ERROR for registerUser", error: err }))
+        } else [
+          res.json({ errors:{ email:{ message: 'Theres a user with this email!' }}})
+        ]
+      })
   },
 
   loginUser: async ( req, res ) => {
     const user = await User.findOne({ email: req.body.email })
-    if (user === null) {
-      return res.sendStatus(400)
+    if ( user === null ) {
+      return res.json({ error: 'Please create an account'})
+      // return res.sendStatus(400)
     }
 
     const correctPassword = await bcrypt.compare( req.body.password, user.password )
-    if (!correctPassword) {
-      return res.sendStatus(400)
+    if ( !correctPassword ) {
+      return res.json({ error: 'Password incorrect!'})
+      // return res.sendStatus(400)
     }
 
     const userToken = jwt.sign({
       id: user._id
     }, process.env.SECRET_KEY)
     res
-      .cookie('userToken', userToken, process.env.SECRET_KEY, {
+      .cookie( 'userToken', userToken, process.env.SECRET_KEY, {
         httpOnly: true
       })
       .json({ results: 'Logged in user has been verified!'})

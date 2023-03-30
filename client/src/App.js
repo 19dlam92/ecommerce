@@ -16,14 +16,10 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path='/'>
-            <div className='row'>
-              <div className='col'>
-                <Register />
-              </div>
-              <div className='col'>
-                <Login />
-              </div>
-            </div>
+            <Register />
+          </Route>
+          <Route exact path='/login'>
+            <Login />
           </Route>
           <Route exact path='/dashboard'>
             <Dashboard />

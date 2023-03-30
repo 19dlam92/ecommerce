@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
+
 const Register = () => {
 
   const [email, setEmail] = useState("");
@@ -20,16 +21,18 @@ const Register = () => {
     axios.post('http://localhost:8000/api/User/register', registerInfo, { withCredentials: true })
       .then( res => {
         console.log('Response for Registration', res)
-        if ( res. data.errors ) {
+        if ( res.data.errors ) {
           setFormErrors( res.data.errors )
         } else {
-          history.push('/dashboard')
+          history.push('/login')
         }
       })
       .catch( err => {
         console.error( err )
       })
   }
+
+  // password confirmation not linked!
 
   return(
     <>
