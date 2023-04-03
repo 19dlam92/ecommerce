@@ -5,7 +5,7 @@ module.exports = (app) => {
 
   app.get("/api/User", UserController.allUsers);
 
-  app.get("/api/User/:id", UserController.oneUser);
+  app.get("/api/User/jwt", UserController.oneUser);
 
   app.put("/api/User/:id", UserController.updateUser);
 
@@ -17,6 +17,6 @@ module.exports = (app) => {
 
   app.post("/api/User/login", UserController.loginUser)
 
-  app.post("/api/User/logout", UserController.logoutUser)
+  app.get("/api/User/logout", UserController.logoutUser)
 
 }

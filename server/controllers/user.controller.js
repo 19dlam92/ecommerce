@@ -23,9 +23,10 @@ module.exports = {
   },
 
   oneUser: function ( req, res ) {
-    User.findOne({ _id: req.params.id })
+    const decodedJWT = jwt.decode( req.cookies.userToken, { complete: true })
+    User.findOne({ _id: decodedJWT.payload.id })
       .then( oneUser => {
-        res,json({ results: oneUser })
+        res.json({ results: oneUser })
       })
       .catch( err => res.json({ message: "HERE'S THE ERROR for oneUser", error: err }))
   },
@@ -55,7 +56,7 @@ module.exports = {
   registerUser: function ( req, res ) {
     User.find({ email: req.body.email })
       .then ( userWithEmail => {
-        if ( userWithEmail === 0 ) {
+        if ( userWithEmail.length === 0 ) {
           User.create( req.body )
             .then( user => {
               const userToken = jwt.sign({
@@ -69,9 +70,9 @@ module.exports = {
                 })
                 .json({ results: 'You have registered a User!', user: user })})
             .catch( err => res.json({ message: "HERE'S THE ERROR for registerUser", error: err }))
-        } else [
+        } else {
           res.json({ errors:{ email:{ message: 'Theres a user with this email!' }}})
-        ]
+        }
       })
   },
 

@@ -3,10 +3,6 @@ const mongoose = require('mongoose');
 
 const EcommerceSchema = new mongoose.Schema({
 
-  category: {
-    type: String,
-    required: [true, 'Please select a category']
-  },
   product: {
     type: String,
     required: [true, 'Please select a product']
