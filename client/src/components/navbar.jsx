@@ -49,7 +49,7 @@ const Navbar = () => {
         <a href="/dashboard" className='active'>Home</a>
         <a href="/products">Products</a>
         <a href="/orders">Make an Order</a>
-        <a href="/list">List a Product</a>
+        <a href="/lists">List a Product</a>
         <a href="/contacts">Contact</a>
       </div>
     </>

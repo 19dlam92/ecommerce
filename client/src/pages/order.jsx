@@ -8,7 +8,7 @@ const Order = () => {
 
   return(
     <>
-      <h1>List socials and links for interviewers</h1>
+      <h1>Make an order?</h1>
     </>
   )
 }

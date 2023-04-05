@@ -1,4 +1,5 @@
 import React from 'react'
+import InfiniteScrolling from '../features/infinite-scrolling';
 
 
 const Product = () => {
@@ -8,7 +9,9 @@ const Product = () => {
 
   return(
     <>
-      <h1>List socials and links for interviewers</h1>
+      <h1>Displays posted items</h1>
+      <h3>Infinite scrolling feature</h3>
+      <InfiniteScrolling />
     </>
   )
 }

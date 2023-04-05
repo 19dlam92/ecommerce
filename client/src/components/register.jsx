@@ -32,7 +32,7 @@ const Register = () => {
       })
   }
 
-  // password confirmation and form errors not linked!
+
 
   return(
     <>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const Carousel = () => {
+const InfiniteScrolling = () => {
 
 
 
@@ -13,4 +13,4 @@ const Carousel = () => {
   )
 }
 
-export default Carousel;
+export default InfiniteScrolling;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom'
+import Carousel from '../features/carousel'
 
 
 const Dashboard = () => {
@@ -30,7 +31,7 @@ const Dashboard = () => {
   return(
     <>
       <div>
-        <h2>You have successfully created an account with { loggedIn.email }!</h2>
+        <Carousel />
       </div>
     </>
   )

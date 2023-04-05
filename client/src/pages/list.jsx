@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ImageUpload from '../features/image-upload';
 
 const List = () => {
 
@@ -8,7 +8,7 @@ const List = () => {
 
   return(
     <>
-      
+      <ImageUpload />
     </>
   )
 }

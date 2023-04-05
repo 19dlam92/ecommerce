@@ -9,10 +9,10 @@ import Login from './components/login'
 import Register from './components/register'
 import Dashboard from './components/dashboard'
 import Navbar from './components/navbar'
-import Product from './components/product'
-import Order from './components/order'
-import List from './components/list'
-import Contact from './components/contact'
+import Product from './pages/product'
+import Order from './pages/order'
+import List from './pages/list'
+import Contact from './pages/contact'
 
 
 function App() {
@@ -34,16 +34,16 @@ function App() {
           <Route exact path='/dashboard'>
             <Dashboard />
           </Route>
-          <Route exact path='/product'>
+          <Route exact path='/products'>
             <Product />
           </Route>
-          <Route exact path='/order'>
+          <Route exact path='/orders'>
             <Order />
           </Route>
-          <Route exact path='/list'>
+          <Route exact path='/lists'>
             <List />
           </Route>
-          <Route exact path='/contact'>
+          <Route exact path='/contacts'>
             <Contact />
           </Route>
         </Switch>
