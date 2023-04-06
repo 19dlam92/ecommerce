@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom'
+import LoginModal from '../features/modal/login-modal'
+import RegisterModal from '../features/modal/register-modal'
 
 
 const Navbar = () => {
@@ -41,7 +43,9 @@ const Navbar = () => {
         </div>
         <h1>Change Language?</h1>
         <div className='navbar-btn'>
-          <Link to='/login' className='btn btn-primary'>Log In</Link>
+          <LoginModal />
+          <RegisterModal />
+          {/* <Link to='/login' className='btn btn-primary'>Log In</Link> */}
           <button onClick={ logoutUser } className='btn btn-warning'>Log Out</button>
         </div>
       </div>
